@@ -9,7 +9,7 @@ const App = () => {
     try {
       setError(null);
 
-      const response = await fetch(`http://localhost:5000/api/car/${purchaseId}`);
+      const response = await fetch(`http://localhost:5001/api/car/${purchaseId}`);
       if (!response.ok) {
         throw new Error('Purchase ID not found');
       }
