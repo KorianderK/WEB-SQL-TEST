@@ -9,9 +9,9 @@ const App = () => {
     try {
       setError(null);
 
-      if (!navigator.onLine) {
-        throw new Error('Server is not reachable. Please check your network connection.');
-      }
+      // if (!navigator.onLine) {
+      //   throw new Error('Server is not reachable. Please check your network connection.');
+      // }
 
       const response = await fetch(`http://localhost:5000/api/car/${purchaseId}`);
 
