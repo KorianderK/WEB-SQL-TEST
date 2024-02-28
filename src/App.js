@@ -9,17 +9,29 @@ const App = () => {
     try {
       setError(null);
 
+      if (!navigator.onLine) {
+        throw new Error('Server is not reachable. Please check your network connection.');
+      }
+
       const response = await fetch(`http://localhost:5000/api/car/${purchaseId}`);
+
       if (!response.ok) {
         throw new Error('Purchase ID not found');
       }
+
       const data = await response.json();
       console.log('Data retrieved for purchase ID', purchaseId);
       setCarInfo(data);
     } catch (error) {
       console.error('Error fetching data:', error.message);
+
+      if (error.message === 'Failed to fetch') {
+        setError('Server has disconnected or is not reachable. Please contact IT for assistance.');
+      } else {
+        setError(error.message);
+      }
+
       setCarInfo(null);
-      setError('Purchase ID not found');
     }
   };
 
