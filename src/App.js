@@ -19,14 +19,21 @@ const App = () => {
         throw new Error('Purchase ID not found');
       }
 
-      const data = await response.json();
+      const responseData = await response.text();
+
+      // Check for an empty response before attempting to parse as JSON
+      if (!responseData.trim()) {
+        throw new Error('No data found for the given ID');
+      }
+
+      const data = JSON.parse(responseData);
       console.log('Data retrieved for purchase ID', purchaseId);
       setCarInfo(data);
     } catch (error) {
       console.error('Error fetching data:', error.message);
 
       if (error.message === 'Failed to fetch') {
-        setError('Server has disconnected or is not reachable. Please contact IT for assistance.');
+        setError('Server is not reachable. Please contact the IT department.');
       } else {
         setError(error.message);
       }
@@ -57,7 +64,7 @@ const App = () => {
           <p>Dealership: {carInfo.purchase_location}</p>
           <p>Payment tenure: {carInfo.tenure_duration}</p>
           <p>Warranty: {carInfo.warranty_status}</p>
-          {/* Add more information as needed */}
+          {/* Add more information as needed here */}
         </div>
       )}
     </div>
