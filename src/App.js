@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div >
       <h1>Car Dealership Finance Department</h1>
       <SearchBar onSearch={handleSearch} clearError={clearError} />
       {error && <p style={{ color: 'red' }}>{error}</p>}
