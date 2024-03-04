@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div >
+    <div style={{ textAlign: 'center', paddingTop: '70px' }}>
       <h1>Car Dealership Finance Department</h1>
       <SearchBar onSearch={handleSearch} clearError={clearError} />
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -59,8 +59,12 @@ const App = () => {
           <p>Make: {carInfo.make}</p>
           <p>Color: {carInfo.color}</p>
           <p>Customer: {carInfo.customer_name}</p>
-          <p>Date of purchase: {carInfo.purchase_date}</p>
-          <p>Purchase ID: {carInfo.purchase_id}</p>
+          <p>Date of purchase: {new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: '2-digit'
+          }).format(new Date(carInfo.purchase_date))}</p>
+          <p>Purchase ID: {carInfo.purchase_id}</p> 
           <p>Dealership: {carInfo.purchase_location}</p>
           <p>Payment tenure: {carInfo.tenure_duration}</p>
           <p>Warranty: {carInfo.warranty_status}</p>

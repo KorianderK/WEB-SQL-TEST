@@ -28,7 +28,7 @@ const SearchBar = ({ onSearch, clearError }) => {
   return (
     <div>
       {/* Label for the input field */}
-      <label htmlFor="purchaseId">Enter brand/model: </label>
+      <label htmlFor="purchaseId">Enter customer purchase ID: </label>
       {/* Input field for the purchase ID */}
       <input
         type="text"
